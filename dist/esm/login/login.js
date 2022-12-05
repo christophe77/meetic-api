@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 import { write } from '../storage';
 async function login(email, password) {
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -24,7 +24,6 @@ async function login(email, password) {
         if (devToolEvent.request.url === 'https://www.meetic.fr/apida/account' &&
             !isBearerOk) {
             isBearerOk = true;
-            // console.log('login', devToolEvent.request.headers.Authorization);
             write('auth', devToolEvent.request.headers.Authorization);
             write('cookie', devToolEvent.request.headers.Cookie);
             setTimeout(async () => {

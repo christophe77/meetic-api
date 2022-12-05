@@ -3,7 +3,7 @@ import { write } from '../storage';
 
 async function login(email: string, password: string): Promise<any> {
 	const browser = await puppeteer.launch({
-		headless: true,
+		headless: false,
 		args: [
 			'--no-sandbox',
 			'--disable-setuid-sandbox',
@@ -28,7 +28,6 @@ async function login(email: string, password: string): Promise<any> {
 			!isBearerOk
 		) {
 			isBearerOk = true;
-			// console.log('login', devToolEvent.request.headers.Authorization);
 			write('auth', devToolEvent.request.headers.Authorization);
 			write('cookie', devToolEvent.request.headers.Cookie);
 			setTimeout(async () => {

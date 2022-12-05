@@ -7,7 +7,7 @@ const puppeteer_1 = __importDefault(require("puppeteer"));
 const storage_1 = require("../storage");
 async function login(email, password) {
     const browser = await puppeteer_1.default.launch({
-        headless: true,
+        headless: false,
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
@@ -29,7 +29,6 @@ async function login(email, password) {
         if (devToolEvent.request.url === 'https://www.meetic.fr/apida/account' &&
             !isBearerOk) {
             isBearerOk = true;
-            // console.log('login', devToolEvent.request.headers.Authorization);
             (0, storage_1.write)('auth', devToolEvent.request.headers.Authorization);
             (0, storage_1.write)('cookie', devToolEvent.request.headers.Cookie);
             setTimeout(async () => {
