@@ -6,9 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const login_1 = __importDefault(require("./login/login"));
 const interactions_1 = __importDefault(require("./api/interactions"));
 const members_1 = __importDefault(require("./api/members"));
+const inbox_1 = __importDefault(require("./api/inbox"));
 const meeticApi = {
     login: login_1.default,
     interactions: interactions_1.default,
     members: members_1.default,
+    inbox: inbox_1.default
 };
 exports.default = meeticApi;

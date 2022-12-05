@@ -23,21 +23,6 @@ export type Member = {
 				full: {
 					href: string;
 				};
-				little: {
-					href: string;
-				};
-				medium: {
-					href: string;
-				};
-				four_fifth: {
-					href: string;
-				};
-				square_medium_x2: {
-					href: string;
-				};
-				square_medium_x3: {
-					href: string;
-				};
 				self: {
 					href: string;
 				};
@@ -118,30 +103,6 @@ export type Me = {
 			is_main: boolean;
 			links: {
 				full: {
-					href: string;
-					format: string;
-				};
-				little: {
-					href: string;
-					format: string;
-				};
-				medium: {
-					href: string;
-					format: string;
-				};
-				four_fifth: {
-					href: string;
-					format: string;
-				};
-				thumb_blurred: {
-					href: string;
-					format: string;
-				};
-				square_medium_x1: {
-					href: string;
-					format: string;
-				};
-				square_medium_x3: {
 					href: string;
 					format: string;
 				};

@@ -71,6 +71,12 @@ This is the first thing to do before calling any other function.
     const aboid = 123456789;
     await interactions.postSwipeNo(aboid);
 
+### Inbox
+
+    const { inbox } = meeticApi;
+    // Get messages
+    const messages = await inbox.getMessages();
+
 ## Work in progress
 
 - Documentation of all criterias id in order to perform better search
@@ -79,3 +85,7 @@ This is the first thing to do before calling any other function.
 ## Types
 
 All types can be found on meetic-api folder / types
+
+## Know issue
+
+Sometimes the app is stuck on the login part because of reCaptcha.
