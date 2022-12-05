@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"useDefineForClassFields": true,
+		"module": "esnext",
+		"target": "es2017",
+		"esModuleInterop": true,
+		"declaration": true,
+		"outDir": "dist/esm",
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"strict": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
+}
