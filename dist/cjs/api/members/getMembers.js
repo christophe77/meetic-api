@@ -5,7 +5,7 @@ const getMembers = async () => {
     var _a;
     try {
         const config = (0, axiosInstance_1.generateConfig)();
-        const resp = await axiosInstance_1.axiosInstance.get(`members/infinite?excluded_members=&include=profile(city),pictures(full),album_pictures(full),announce,online,is_potentially_mutual,last_connection_date,similarities,thematic_announces,reflist,right(premium),compatibility,should_display_nudge_to_init_layer,audios,verified_profile&limit=100`, config);
+        const resp = await axiosInstance_1.axiosInstance.get(`members/infinite?excluded_members=&include=profile(city),pictures(full,little,medium,four_fifth,medium_blurred,square_medium_x2,square_medium_x3),album_pictures(full,little,medium,four_fifth,medium_blurred,square_medium_x2,square_medium_x3),announce,online,is_potentially_mutual,last_connection_date,similarities,thematic_announces,reflist,right(premium),compatibility,should_display_nudge_to_init_layer,audios,verified_profile&limit=100`, config);
         return resp.data;
     }
     catch (error) {
