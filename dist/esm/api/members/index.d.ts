@@ -3,5 +3,6 @@ declare const members: {
     getProfile: (aboid: number) => Promise<import("../../types/members").Member>;
     getMe: () => Promise<import("../../types/members").Me>;
     getSearch: (criterias: import("../../types/members").Criterias) => Promise<import("../../types/members").Member[]>;
+    getMessages: () => Promise<import("../../types/inbox").Message[]>;
 };
 export default members;
