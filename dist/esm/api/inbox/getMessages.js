@@ -2,7 +2,7 @@ import { axiosInstance, generateConfig } from '../axiosInstance';
 const getMessages = async () => {
     var _a;
     try {
-        const config = generateConfig();
+        const config = await generateConfig();
         const resp = await axiosInstance.get(`inbox/threads/trustzone?limit=50&include=profile(city),pictures(medium),online,mutual_match,announce,right(premium,anonymous),blacklist`, config);
         return resp.data;
     }

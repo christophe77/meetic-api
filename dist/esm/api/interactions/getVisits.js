@@ -2,7 +2,7 @@ import { axiosInstance, generateConfig } from '../axiosInstance';
 const getVisits = async () => {
     var _a;
     try {
-        const config = generateConfig();
+        const config = await generateConfig();
         const resp = await axiosInstance.get(`interactions?with_format_picture=medium&include=members_interactions&direction=received&list=visits&page=1&per_page=30&scam=0`, config);
         return resp.data;
     }

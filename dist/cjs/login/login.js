@@ -97,7 +97,6 @@ function loginProcess(email, password) {
 async function login(email, password) {
     try {
         const authHeaders = await loginProcess(email, password);
-        console.log(authHeaders);
         await (0, storage_1.writeAsync)('auth', authHeaders.auth);
         await (0, storage_1.writeAsync)('cookie', authHeaders.cookie);
         return true;

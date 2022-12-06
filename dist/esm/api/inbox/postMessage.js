@@ -3,7 +3,7 @@ const postMessage = async (aboid, message) => {
     var _a;
     try {
         const creationDate = new Date().toISOString();
-        const config = generateConfig();
+        const config = await generateConfig();
         const resp = await axiosInstance.post(`inbox/messages`, {
             messages: {
                 channel: 'mail',

@@ -14,3 +14,6 @@ export function read(key) {
 export async function readAsync(key) {
     return await kfs(key);
 }
+export async function writeAsync(key, value) {
+    await kfs(key, value);
+}
