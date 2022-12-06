@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer';
-import { write } from '../storage';
-async function login(email, password) {
+import { init, write } from '../storage';
+async function loginProcess(email, password) {
+    init();
     const browser = await puppeteer.launch({
         headless: false,
         args: [
@@ -19,13 +20,11 @@ async function login(email, password) {
     await client.send('Network.setRequestInterception', {
         patterns: [{ urlPattern: '*' }],
     });
-    let isBearerOk = false;
     client.on('Network.requestIntercepted', async (devToolEvent) => {
-        if (devToolEvent.request.url === 'https://www.meetic.fr/apida/account' &&
-            !isBearerOk) {
-            isBearerOk = true;
+        if (devToolEvent.request.url === 'https://www.meetic.fr/apida/account') {
             write('auth', devToolEvent.request.headers.Authorization);
             write('cookie', devToolEvent.request.headers.Cookie);
+            console.log('login', devToolEvent.request.headers.Authorization);
             setTimeout(async () => {
                 await browser.close();
             }, 2000);
@@ -86,5 +85,14 @@ async function login(email, password) {
     await page.waitForNavigation();
     const rootPageSelector = '#root';
     await page.waitForSelector(rootPageSelector);
+}
+async function login(email, password) {
+    try {
+        await loginProcess(email, password);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
 }
 export default login;

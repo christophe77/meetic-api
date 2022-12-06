@@ -13,4 +13,5 @@ export declare const headers: {
     'User-Agent': string;
 };
 export declare function generateConfig(): Config;
+export declare function checkAuth(): Promise<boolean | undefined>;
 export declare const axiosInstance: import("axios").AxiosInstance;

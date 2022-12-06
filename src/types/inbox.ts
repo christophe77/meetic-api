@@ -34,7 +34,7 @@ export type Message = {
 				links: {
 					medium: {
 						href: string;
-					};				
+					};
 					self: {
 						href: string;
 					};
@@ -53,4 +53,11 @@ export type Message = {
 		total: number;
 		links: null;
 	};
+};
+export type PostMessage = {
+	id: string;
+	thread_id: string;
+	harassment: boolean | null;
+	sender_thread_id: string;
+	receiver_thread_id: string;
 };

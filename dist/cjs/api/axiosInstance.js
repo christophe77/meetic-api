@@ -13,16 +13,16 @@ exports.headers = {
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
     Host: 'www.meetic.fr',
-    Referer: 'https://www.meetic.fr/d/onlines',
+    Referer: 'https://www.meetic.fr/m/discover',
     'Sec-Fetch-Dest': 'empty',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Site': 'same-origin',
     'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',
 };
-function generateConfig() {
+async function generateConfig() {
     const headersClone = Object.assign({}, exports.headers);
-    headersClone.Authorization = (0, storage_1.read)('auth');
-    headersClone.Cookie = (0, storage_1.read)('cookie');
+    headersClone.Authorization = await (0, storage_1.readAsync)('auth');
+    headersClone.Cookie = await (0, storage_1.readAsync)('cookie');
     const config = {
         headers: headersClone,
     };

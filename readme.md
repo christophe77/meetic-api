@@ -76,6 +76,9 @@ This is the first thing to do before calling any other function.
     const { inbox } = meeticApi;
     // Get messages
     const messages = await inbox.getMessages();
+    // Post message
+    const messageResponse = await inbox.postMessage(123456789, "hey salut toi!");
+    console.log(messageResponse);
 
 ## Work in progress
 

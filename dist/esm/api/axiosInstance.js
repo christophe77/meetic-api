@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { read } from '../storage';
+import { read, readAsync } from '../storage';
 export const headers = {
     Authorization: '',
     Cookie: '',
@@ -7,7 +7,7 @@ export const headers = {
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
     Host: 'www.meetic.fr',
-    Referer: 'https://www.meetic.fr/d/onlines',
+    Referer: 'https://www.meetic.fr/m/discover',
     'Sec-Fetch-Dest': 'empty',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Site': 'same-origin',
@@ -21,6 +21,18 @@ export function generateConfig() {
         headers: headersClone,
     };
     return config;
+}
+export async function checkAuth() {
+    const auth = await readAsync('auth');
+    const cookie = await readAsync('cookie');
+    if (auth && auth !== '' && cookie && cookie !== '') {
+        return true;
+    }
+    else {
+        setTimeout(async () => {
+            await checkAuth();
+        }, 2000);
+    }
 }
 export const axiosInstance = axios.create({
     baseURL: 'https://www.meetic.fr/apida/',

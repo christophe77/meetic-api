@@ -59,3 +59,10 @@ export type Message = {
         links: null;
     };
 };
+export type PostMessage = {
+    id: string;
+    thread_id: string;
+    harassment: boolean | null;
+    sender_thread_id: string;
+    receiver_thread_id: string;
+};

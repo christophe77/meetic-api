@@ -12,5 +12,5 @@ export declare const headers: {
     'Sec-Fetch-Site': string;
     'User-Agent': string;
 };
-export declare function generateConfig(): Config;
+export declare function generateConfig(): Promise<Config>;
 export declare const axiosInstance: import("axios").AxiosInstance;

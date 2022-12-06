@@ -3,7 +3,7 @@ import { PostSwipeYes } from '../../types/interactions';
 
 const postSwipeYes = async (aboid: number): Promise<PostSwipeYes> => {
 	try {
-		const config = generateConfig();
+		const config = await generateConfig();
 		const resp = await axiosInstance.post(
 			`interactions`,
 			{

@@ -4,7 +4,7 @@ const axiosInstance_1 = require("../axiosInstance");
 const postSwipeYes = async (aboid) => {
     var _a;
     try {
-        const config = (0, axiosInstance_1.generateConfig)();
+        const config = await (0, axiosInstance_1.generateConfig)();
         const resp = await axiosInstance_1.axiosInstance.post(`interactions`, {
             interactions: {
                 type: 'profileswipe',
