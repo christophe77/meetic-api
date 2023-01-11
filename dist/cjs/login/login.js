@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const puppeteer_1 = __importDefault(require("puppeteer"));
 const storage_1 = require("../storage");
-function loginProcess(email, password) {
+const page_1 = __importDefault(require("./page"));
+async function loginProcess(email, password) {
     return new Promise(async (resolve) => {
         (0, storage_1.init)();
         const browser = await puppeteer_1.default.launch({
@@ -37,58 +38,29 @@ function loginProcess(email, password) {
                 interceptionId: devToolEvent.interceptionId,
             });
         });
-        await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1');
-        await page.setViewport({
-            width: 375,
-            height: 667,
-            deviceScaleFactor: 1,
-        });
-        await page.setJavaScriptEnabled(true);
-        await page.evaluateOnNewDocument(() => {
-            // Pass webdriver check
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => false,
-            });
-        });
-        await page.evaluateOnNewDocument(() => {
-            // Overwrite the `plugins` property to use a custom getter.
-            Object.defineProperty(navigator, 'plugins', {
-                // This just needs to have `length > 0` for the current test,
-                // but we could mock the plugins too if necessary.
-                get: () => [1, 2, 3, 4, 5],
-            });
-        });
-        await page.evaluateOnNewDocument(() => {
-            // Overwrite the `languages` property to use a custom getter.
-            Object.defineProperty(navigator, 'languages', {
-                get: () => ['fr-FR', 'fr'],
-            });
-        });
-        await page.goto('https://www.meetic.fr/m/', {
-            waitUntil: 'networkidle2',
-        });
+        const meeticLoginPage = await (0, page_1.default)(page);
         const acceptCookiesSelector = '#onetrust-accept-btn-handler';
-        await page.waitForSelector(acceptCookiesSelector);
-        await page.click(acceptCookiesSelector);
+        await meeticLoginPage.waitForSelector(acceptCookiesSelector);
+        await meeticLoginPage.click(acceptCookiesSelector);
         const showLoginSelector = '[data-description="login"]';
-        await page.waitForSelector(showLoginSelector);
-        await page.focus(showLoginSelector);
-        await page.keyboard.press('Enter');
+        await meeticLoginPage.waitForSelector(showLoginSelector);
+        await meeticLoginPage.focus(showLoginSelector);
+        await meeticLoginPage.keyboard.press('Enter');
         const emailSelector = '[data-description="email"]';
-        await page.waitForSelector(emailSelector);
-        await page.focus(emailSelector);
-        await page.keyboard.type(email);
+        await meeticLoginPage.waitForSelector(emailSelector);
+        await meeticLoginPage.focus(emailSelector);
+        await meeticLoginPage.keyboard.type(email);
         const passwordSelector = '[data-description="password"]';
-        await page.waitForSelector(passwordSelector);
-        await page.focus(passwordSelector);
-        await page.keyboard.type(password);
+        await meeticLoginPage.waitForSelector(passwordSelector);
+        await meeticLoginPage.focus(passwordSelector);
+        await meeticLoginPage.keyboard.type(password);
         const loginSelector = '[data-description="validate"]';
-        await page.waitForSelector(loginSelector);
-        await page.focus(loginSelector);
-        await page.keyboard.press('Enter');
-        await page.waitForNavigation();
+        await meeticLoginPage.waitForSelector(loginSelector);
+        await meeticLoginPage.focus(loginSelector);
+        await meeticLoginPage.keyboard.press('Enter');
+        await meeticLoginPage.waitForNavigation();
         const rootPageSelector = '#root';
-        await page.waitForSelector(rootPageSelector);
+        await meeticLoginPage.waitForSelector(rootPageSelector);
         setTimeout(async () => {
             await browser.close();
         }, 2000);
