@@ -1,7 +1,7 @@
 import { axiosInstance, generateConfig } from '../axiosInstance';
-import { Message } from '../../types/inbox';
+import { Messages } from '../../types/inbox';
 
-const sentInvitations = async (): Promise<Message[]> => {
+const sentInvitations = async (): Promise<Messages> => {
 	try {
 		const config = await generateConfig();
 		const resp = await axiosInstance.get(

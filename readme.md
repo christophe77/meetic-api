@@ -76,15 +76,16 @@ This is the first thing to do before calling any other function.
     const { inbox } = meeticApi;
     // Get messages
     const messages = await inbox.getMessages();
+    console.log(messages.results)
     // Post message
-    const messageResponse = await inbox.postMessage(123456789, "hey salut toi!");
-    console.log(messageResponse);
+    const postMessageResponse = await inbox.postMessage(123456789, "hey salut toi!");
+    console.log(postMessageResponse);
     // List invitations sent
     const sentInvitations = await inbox.sentInvitations();
-    console.log(messageResponse);
+    console.log(sentInvitations.results);
     // Delete messages by aboid
-    const messageResponse = await inbox.deleteMessage(123456789);
-    console.log(messageResponse);
+    const deleteMessageResponse = await inbox.deleteMessage(123456789);
+    console.log(deleteMessageResponse);
 
 ## Work in progress
 

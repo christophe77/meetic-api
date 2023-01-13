@@ -11,12 +11,12 @@ declare const meeticApi: {
         getProfile: (aboid: number) => Promise<import("./types/members").Member>;
         getMe: () => Promise<import("./types/members").Me>;
         getSearch: (criterias: import("./types/members").Criterias) => Promise<import("./types/members").Member[]>;
-        getMessages: () => Promise<import("./types/inbox").Message[]>;
+        getMessages: () => Promise<import("./types/inbox").Messages>;
     };
     inbox: {
-        getMessages: () => Promise<import("./types/inbox").Message[]>;
+        getMessages: () => Promise<import("./types/inbox").Messages>;
         postMessage: (aboid: number, message: string) => Promise<import("./types/inbox").PostMessage>;
-        sentInvitations: () => Promise<import("./types/inbox").Message[]>;
+        sentInvitations: () => Promise<import("./types/inbox").Messages>;
         deleteMessage: (aboId: number) => Promise<boolean>;
     };
 };
