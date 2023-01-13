@@ -79,6 +79,12 @@ This is the first thing to do before calling any other function.
     // Post message
     const messageResponse = await inbox.postMessage(123456789, "hey salut toi!");
     console.log(messageResponse);
+    // List invitations sent
+    const sentInvitations = await inbox.sentInvitations();
+    console.log(messageResponse);
+    // Delete messages by aboid
+    const messageResponse = await inbox.deleteMessage(123456789);
+    console.log(messageResponse);
 
 ## Work in progress
 
